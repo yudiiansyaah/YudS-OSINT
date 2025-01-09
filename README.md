@@ -20,7 +20,7 @@ Follow the steps below based on your operating system.
 ### Linux/macOS
 1. **Clone the Repository**
    ```bash
-   git clone <REPOSITORY_URL>
+   git clone https://github.com/yudiiansyaah/YudS-OSINT.git
    cd YudS-OSINT-main
    ```
 
@@ -48,7 +48,7 @@ Follow the steps below based on your operating system.
 ### Windows
 1. **Clone the Repository**
    ```cmd
-   git clone <REPOSITORY_URL>
+   git clone https://github.com/yudiiansyaah/YudS-OSINT.git
    cd YudS-OSINT-main
    ```
 
