@@ -3,7 +3,7 @@
 YudS-OSINT is an Open Source Intelligence (OSINT) tool built with Python that utilizes various libraries to assist users in gathering information from multiple sources. This project is designed to be user-friendly for both beginners and professionals.
 
 ## Screnshoot
-
+![main display](screenshoot/main-display.png)
 
 ## Key Features
 - Integration with multiple APIs via `api_integration.py`.
