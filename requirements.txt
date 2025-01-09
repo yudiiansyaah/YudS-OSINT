@@ -1,0 +1,12 @@
+fastapi
+python-whois
+requests
+beautifulsoup4
+pyOpenSSL
+uvicorn
+streamlit
+pandas
+plotly
+reportlab
+schedule
+dnspython
