@@ -18,59 +18,84 @@ Before starting, ensure you have:
 Follow the steps below based on your operating system.
 
 ### Linux/macOS
-1. **Clone the Repository**
+1. **Install git in Linux**
+   ```debian/ubuntu
+   sudo apt install git
+   ```
+   ```Fedora
+   sudo dnf install git
+   ```
+   ```Arch Linux
+   sudo pacman -S git
+   ```
+   ``` MacOS
+   brew install git
+   ```
+2. **Clone the Repository**
    ```bash
    git clone https://github.com/yudiiansyaah/YudS-OSINT.git
    cd YudS-OSINT-main
    ```
 
-2. **Create and Activate a Virtual Environment**
+3. **Create and Activate a Virtual Environment**
    ```bash
    python3 -m venv venv
    source venv/bin/activate
    ```
 
-3. **Install Dependencies**
+4. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Run the Application**
-   - To start the application:
-     ```bash
-     python main.py
-     ```
+5. **Run the Application**
    - To run the API with Uvicorn:
      ```bash
-     uvicorn api_integration:app --reload
+     cd api
+     ```
+     ```
+     python3 main.py
+     ```
+    To start the application:
+     ```bash
+     cd ..
+     streamlit run main.py
      ```
 
 ### Windows
-1. **Clone the Repository**
+1. **Install Git in CMD
+   ```cmd
+   winget install --id Git.Git -e --source winget
+   ```
+2. **Clone the Repository**
    ```cmd
    git clone https://github.com/yudiiansyaah/YudS-OSINT.git
    cd YudS-OSINT-main
    ```
 
-2. **Create and Activate a Virtual Environment**
+3. **Create and Activate a Virtual Environment**
    ```cmd
    python -m venv venv
    venv\Scripts\activate
    ```
 
-3. **Install Dependencies**
+4. **Install Dependencies**
    ```cmd
    pip install -r requirements.txt
    ```
 
-4. **Run the Application**
-   - To start the application:
-     ```cmd
-     python main.py
-     ```
+5. **Run the Application**
    - To run the API with Uvicorn:
      ```cmd
-     uvicorn api_integration:app --reload
+     cd api
+     ```
+     ```
+     python main.py
+     ```
+    To start the application:
+     ```bash
+     cd ..
+     streamlit run main.py
      ```
 
 ## Troubleshooting
