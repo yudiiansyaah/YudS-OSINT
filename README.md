@@ -19,7 +19,7 @@ Follow the steps below based on your operating system.
 
 ### Linux/macOS
 1. **Install git in Linux/MacOS**
-   **Open Terminal**
+   - **Open Terminal**
    - Debian/Ubuntu
    ```debian/ubuntu
    sudo apt install git
@@ -68,7 +68,7 @@ Follow the steps below based on your operating system.
      ```
 
 ### Windows
-1. **Install Git in CMD
+1. **Install Git in CMD**
    ```cmd
    winget install --id Git.Git -e --source winget
    ```
