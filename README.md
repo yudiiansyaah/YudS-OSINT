@@ -59,14 +59,15 @@ Follow the steps below based on your operating system.
 6. **Run the Application**
    - To run the API with Uvicorn:
      ```bash
-     cd api
+     cd YudS-OSINT-main/api
      ```
      ```
-     python3 main.py
+     python3 my_api.py
      ```
-    To start the application:
+    - To start the application:
+     - Open new terminal
      ```bash
-     cd ..
+     cd Yuds-OSINT-main
      streamlit run main.py
      ```
 
@@ -94,15 +95,16 @@ Follow the steps below based on your operating system.
 
 5. **Run the Application**
    - To run the API with Uvicorn:
-     ```cmd
-     cd api
-     ```
-     ```
-     python main.py
-     ```
-    To start the application:
      ```bash
-     cd ..
+     cd YudS-OSINT-main/api
+     ```
+     ```
+     python3 my_api.py
+     ```
+    - To start the application:
+     - Open new terminal
+     ```bash
+     cd Yuds-OSINT-main
      streamlit run main.py
      ```
 
