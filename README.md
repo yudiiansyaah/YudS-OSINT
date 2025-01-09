@@ -78,7 +78,7 @@ Follow the steps below based on your operating system.
 2. **Clone the Repository**
    ```cmd
    git clone https://github.com/yudiiansyaah/YudS-OSINT.git
-   cd YudS-OSINT-main
+   cd YudS-OSINT
    ```
 
 3. **Create and Activate a Virtual Environment**
