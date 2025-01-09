@@ -18,37 +18,41 @@ Before starting, ensure you have:
 Follow the steps below based on your operating system.
 
 ### Linux/macOS
-1. **Install git in Linux**
+1. **Install git in Linux/MacOS**
+   - Debian/Ubuntu
    ```debian/ubuntu
    sudo apt install git
    ```
+   - Fedora
    ```Fedora
    sudo dnf install git
    ```
+   - Arch Linux
    ```Arch Linux
    sudo pacman -S git
    ```
+   - MacOS
    ``` MacOS
    brew install git
    ```
-2. **Clone the Repository**
+3. **Clone the Repository**
    ```bash
    git clone https://github.com/yudiiansyaah/YudS-OSINT.git
    cd YudS-OSINT-main
    ```
 
-3. **Create and Activate a Virtual Environment**
+4. **Create and Activate a Virtual Environment**
    ```bash
    python3 -m venv venv
    source venv/bin/activate
    ```
 
-4. **Install Dependencies**
+5. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-5. **Run the Application**
+6. **Run the Application**
    - To run the API with Uvicorn:
      ```bash
      cd api
