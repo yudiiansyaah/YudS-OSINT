@@ -219,7 +219,7 @@ if domain:
                 # --- Port Scan ---
                 st.subheader(f"Port Scan for {ip}")
                 start_port = 1
-                end_port = 1024
+                end_port = 65535
                 progress_bar_placeholder = st.empty()
                 def progress_callback(progress):
                     animation_html = get_neon_loading_animation(progress)
