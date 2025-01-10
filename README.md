@@ -26,22 +26,22 @@ YudS-OSINT supports *Linux*, *macOS*, and *Windows*.
    
    - *Open Terminal and use the following commands based on your distribution:*
      
-     **Debian/Ubuntu**:
-     ```bash
-     sudo apt install git
-     ```
-     **Fedora**:
-     ```bash
-     sudo dnf install git
-     ```
-     **Arch Linux**:
-     ```bash
-     sudo pacman -S git
-     ```
-     **macOS**:
-     ```bash
-     brew install git
-     ```
+   **Debian/Ubuntu**:
+   ```bash
+   sudo apt install git
+   ```
+   **Fedora**:
+   ```bash
+   sudo dnf install git
+   ```
+   **Arch Linux**:
+   ```bash
+   sudo pacman -S git
+   ```
+   **macOS**:
+   ```bash
+   brew install git
+   ```
 
 2. **Clone the Repository**
    ```bash
@@ -123,13 +123,13 @@ YudS-OSINT supports *Linux*, *macOS*, and *Windows*.
 ### Application Execution Issues
 - Ensure the virtual environment is activated before running commands:
   - **Linux/macOS**:
-    ```bash
-    source venv/bin/activate
-    ```
+  ```bash
+  source venv/bin/activate
+  ```
   - **Windows**:
-    ```cmd
-    venv\Scripts\activate
-    ```
+  ```cmd
+  venv\Scripts\activate
+  ```
 - Verify the configuration in `config.py`.
 
 ### API Not Running
