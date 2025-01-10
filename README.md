@@ -122,13 +122,13 @@ cd YudS-OSINT
 - **Application Execution Issues**:
   - Make sure the virtual environment is activated before running commands.
 - **Linux/MacOS**:
-  -'''bash
+  - ```bash
    source venv/bin/activate
-   '''
+    ```
 - **Windows**:
-  -''' bash
+  -``` bash
    venv/Scripts/activate
-   '''
+   ```
   - Check the configuration in `config.py`.
 
 - **API Not Running**:
