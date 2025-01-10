@@ -21,7 +21,7 @@ Ensure you have the following before starting:
 Follow the steps below according to your operating system.
 YudS-OSINT supports *Linux*, *macOS*, and *Windows*.
 
-### Linux/macOS
+## Linux/macOS
 1. **Install Git**
    
    - *Open Terminal and use the following commands based on your distribution:*
@@ -74,7 +74,7 @@ YudS-OSINT supports *Linux*, *macOS*, and *Windows*.
   streamlit run main.py
   ```
 
-### Windows
+## Windows
 1. **Install Git**
    ```cmd
    winget install --id Git.Git -e --source winget
