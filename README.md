@@ -19,10 +19,13 @@ Before starting, ensure you have:
 
 ## Installation Steps
 Follow the steps below based on your operating system.
+Support all Distribution Linux, MacOS, Windows.
 
 ### Linux/macOS
 1. **Install git in Linux/MacOS**
+
    - **Open Terminal**
+
    - Debian/Ubuntu
    ```debian/ubuntu
    sudo apt install git
@@ -42,6 +45,7 @@ Follow the steps below based on your operating system.
 3. **Clone the Repository**
    ```bash
    git clone https://github.com/yudiiansyaah/YudS-OSINT.git
+cd YudS-OSINT
    ```
 
 4. **Create and Activate a Virtual Environment**
@@ -58,7 +62,7 @@ Follow the steps below based on your operating system.
 6. **Run the Application**
    - To run the API with Uvicorn:
      ```bash
-     cd YudS-OSINT/api
+     cd /YudS-OSINT/api
      ```
      ```
      python3 my_api.py
@@ -95,10 +99,10 @@ Follow the steps below based on your operating system.
 5. **Run the Application**
    - To run the API with Uvicorn:
      ```bash
-     cd YudS-OSINT/api
+     cd /YudS-OSINT/api
      ```
      ```
-     python3 my_api.py
+     python my_api.py
      ```
     - To start the application:
      - Open new Cmd
@@ -117,6 +121,14 @@ Follow the steps below based on your operating system.
 
 - **Application Execution Issues**:
   - Make sure the virtual environment is activated before running commands.
+- **Linux/MacOS**:
+  -'''bash
+   source venv/bin/activate
+   '''
+- **Windows**:
+  -''' bash
+   venv/Scripts/activate
+   '''
   - Check the configuration in `config.py`.
 
 - **API Not Running**:
