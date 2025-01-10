@@ -42,7 +42,7 @@ Support all Distribution Linux, MacOS, Windows.
    ``` MacOS
    brew install git
    ```
-3. **Clone the Repository**
+2. **Clone the Repository**
    ```bash
    git clone https://github.com/yudiiansyaah/YudS-OSINT.git
 cd YudS-OSINT
