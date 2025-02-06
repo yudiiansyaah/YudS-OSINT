@@ -5,8 +5,7 @@ import random
 import math
 
 def get_neon_loading_animation(progress):
-    """Returns HTML for a rotating color loading animation."""
-    hue = int((progress * 360 * 3) % 360) # Hue calculation for looping color
+    hue = int((progress * 360 * 3) % 360)
     return f"""
     <div style="display: flex; justify-content: center; align-items: center;">
         <div style="width: 50px; height: 50px; border-radius: 50%; position: relative;">
@@ -34,7 +33,6 @@ def get_neon_loading_animation(progress):
 
 
 async def async_scan_port(ip, port):
-    """Asynchronously scans a single port for a given IP address."""
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(0.1)
@@ -46,7 +44,7 @@ async def async_scan_port(ip, port):
     except socket.gaierror as e:
         return {"error": f"Socket error: {e}"}
     except OSError as e:
-      if e.errno == 111: # errno 111 is Connection Refused
+      if e.errno == 111: 
         return None
       return {"error": f"An OS error occurred: {e}"}
     except Exception as e:
@@ -54,7 +52,6 @@ async def async_scan_port(ip, port):
 
 
 async def async_port_scan(ip, start_port, end_port, progress_callback=None):
-    """Asynchronously scans a range of ports for a given IP address with progress callback."""
     if not isinstance(start_port, int) or not isinstance(end_port, int) or start_port < 1 or end_port > 65535 or start_port > end_port:
         st.error("Invalid port range.")
         return []
@@ -74,6 +71,6 @@ async def async_port_scan(ip, start_port, end_port, progress_callback=None):
         if isinstance(result, int):
             open_ports.append(result)
         elif isinstance(result, dict) and "error" in result:
-            st.error(result["error"])  # Log any error encountered
+            st.error(result["error"])  
 
     return open_ports
