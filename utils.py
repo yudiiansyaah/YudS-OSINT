@@ -3,7 +3,6 @@ import streamlit as st
 import json
 
 def get_geolocation(ip):
-    """Retrieves geolocation information for a given IP address."""
     if not ip:
         return {"error": "IP Address cannot be empty."}
     with st.spinner(f"Getting geolocation for {ip}"):
