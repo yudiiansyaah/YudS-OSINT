@@ -12,7 +12,6 @@ from OpenSSL import crypto
 app = FastAPI()
 
 def get_geolocation(ip):
-    """Retrieves geolocation information for a given IP address."""
     if not ip:
         return {"error": "IP Address cannot be empty."}
     url = f"http://ip-api.com/json/{ip}"
@@ -27,7 +26,6 @@ def get_geolocation(ip):
 
 
 def get_ssl_certificate_info(domain):
-    """Retrieves SSL certificate information for a given domain."""
     if not domain:
       return {"error": "Domain cannot be empty."}
     try:
@@ -81,37 +79,31 @@ def get_ssl_certificate_info(domain):
         return {"error": f"Error retrieving SSL certificate: {e}"}
 
 def get_phone_number_lookup(query):
-    """Attempts to find phone numbers in a given query or on a website.
-    Regex pattern for a common formats, adapt as needed
-    """
-
     if not query:
         return {"message": "No query provided for phone number lookup"}
     phone_number_regex = re.compile(r'(\+?\d{1,3}[-.\s]?)?(\(?\d{1,4}\)?[-.\s]?)?(\d{1,4}[-.\s]?\d{1,9})')
     numbers = []
-    if query.startswith('http'): # check if the query is a URL
+    if query.startswith('http'):
        try:
            response = requests.get(query,timeout=5)
            response.raise_for_status()
            soup = BeautifulSoup(response.content, 'html.parser')
-           text = soup.get_text() # extract all text
+           text = soup.get_text() 
            for match in phone_number_regex.finditer(text):
-               numbers.append(match.group().strip()) # append non-empty matches
+               numbers.append(match.group().strip()) 
        except requests.exceptions.RequestException as e:
           return {"error": f"Error accessing webpage {query}: {e}"}
 
     elif isinstance(query,str):
       for match in phone_number_regex.finditer(query):
         numbers.append(match.group().strip())
-
     if numbers:
-        return list(set(numbers)) # return unique phone numbers
+        return list(set(numbers)) 
     return {"message": "No phone numbers detected"}
 
 
 
 def get_email_lookup(query):
-     """Attempts to find email addresses in given query or webpage"""
      if not query:
          return {"message": "No query provided for email lookup"}
      email_regex = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
