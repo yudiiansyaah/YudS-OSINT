@@ -16,9 +16,7 @@ from utils import get_geolocation
 from extra_functions import technology_detection, os_detection, gather_domain_info
 from api_integration import shodan_lookup, virustotal_lookup, my_api_whois, my_api_geoip, my_api_ssl, my_api_phone, my_api_email
 
-# External API functions and integrations:
 def subdomain_lookup(domain):
-    """Enumerates subdomains for a given domain using crt.sh."""
     if not domain:
         return {"error": "Domain cannot be empty."}
     with st.spinner(f"Enumerating subdomains for {domain}"):
@@ -34,11 +32,9 @@ def subdomain_lookup(domain):
            return {"error": f"Error decoding JSON: {e}"}
 
 
-# Data handling and visualization
 def visualize_ports(ports, start_port, end_port):
-    """Visualizes port scan results using Plotly."""
     if not ports:
-        return None  # Return None if there are no ports
+        return None  
     with st.spinner("Visualizing port data"):
         all_ports = list(range(start_port, end_port + 1))
         port_status = [1 if port in ports else 0 for port in all_ports]
@@ -62,7 +58,6 @@ def visualize_ports(ports, start_port, end_port):
 
 
 def format_port_output(ports):
-    """Formats open port list for display in the UI."""
     if not ports:
         return "<p>No open ports found</p>"
     output = "<p>Open Ports: "
@@ -73,7 +68,6 @@ def format_port_output(ports):
 
 
 def create_pandas_dataframe(data):
-    """Creates a pandas DataFrame from given data."""
     if not data:
         return None
     with st.spinner("Creating Dataframe"):
@@ -81,7 +75,6 @@ def create_pandas_dataframe(data):
 
 
 def generate_report(data, filename):
-    """Generates a PDF report from given data."""
     if not data:
        return {"error": "No Data to be exported"}
     with st.spinner(f"Generating PDF report as {filename}"):
@@ -147,18 +140,15 @@ st.markdown(''' <h1 class="created-by"><span style="color:#E10600;">Created</spa
 domain = st.text_input('Enter domain for analysis or ip address:')
 
 if domain:
-    # Tab Layout
     tab1, tab2, tab3 = st.tabs(["Domain/IP Info", "Extra Info", "Export"])
 
     with tab1:
-        # --- WHOIS ---
         st.subheader("WHOIS Lookup")
         whois_data = whois_lookup(domain)
         if "error" in whois_data:
             st.error(whois_data["error"])
         else:
             st.json(whois_data)
-        # --- WHOIS from My API ---
         st.subheader("WHOIS Lookup (My API)")
         my_api_whois_data = my_api_whois(domain)
         if "error" in my_api_whois_data:
@@ -166,7 +156,6 @@ if domain:
         else:
             st.json(my_api_whois_data)
 
-        # --- DNS Lookup ---
         st.subheader("DNS Lookup")
         dns_data = dns_lookup(domain)
         if "error" in dns_data:
@@ -174,7 +163,6 @@ if domain:
         else:
             st.write(dns_data)
 
-        # --- Subdomains ---
         st.subheader("Subdomain Enumeration")
         subdomains = subdomain_lookup(domain)
         if "error" in subdomains:
@@ -182,7 +170,6 @@ if domain:
         else:
             st.write(subdomains)
 
-        # --- SSL Info ---
         st.subheader("SSL Certificate Information")
         ssl_info = my_api_ssl(domain)
         if "error" in ssl_info:
@@ -192,7 +179,6 @@ if domain:
 
         if isinstance(dns_data, list):
             for ip in dns_data:
-                # --- Geolocation ---
                 st.subheader(f"Geolocation for {ip}")
                 geo_data = get_geolocation(ip)
                 if "error" in geo_data:
@@ -200,7 +186,6 @@ if domain:
                 else:
                     st.json(geo_data)
 
-                # --- Geolocation from My API ---
                 st.subheader(f"Geolocation (My API) for {ip}")
                 my_api_geo_data = my_api_geoip(ip)
                 if "error" in my_api_geo_data:
@@ -208,7 +193,6 @@ if domain:
                 else:
                    st.json(my_api_geo_data)
 
-                # --- Shodan Lookup ---
                 st.subheader(f"Shodan Lookup for {ip}")
                 shodan_data = shodan_lookup(ip)
                 if "error" in shodan_data:
@@ -216,7 +200,6 @@ if domain:
                 else:
                     st.json(shodan_data)
 
-                # --- Port Scan ---
                 st.subheader(f"Port Scan for {ip}")
                 start_port = 1
                 end_port = 65535
@@ -226,15 +209,13 @@ if domain:
                     progress_bar_placeholder.markdown(animation_html, unsafe_allow_html=True)
                 ports = asyncio.run(async_port_scan(ip, start_port, end_port, progress_callback=progress_callback))  # Use the async scan
                 progress_bar_placeholder.empty()
-                # Format and display open ports with colored text
                 formatted_output = format_port_output(ports)
                 st.markdown(formatted_output, unsafe_allow_html=True)
 
                 fig = visualize_ports(ports, start_port, end_port)
-                if fig: # only render if port data available
+                if fig: 
                     st.plotly_chart(fig, key=ip)
     with tab2:
-        # Automatically gather phone numbers and emails if the domain is a URL
         if domain.startswith("http"):
             st.subheader("Auto Phone Number OSINT")
             phone_data = my_api_phone(domain)
@@ -253,7 +234,6 @@ if domain:
             else:
                 st.write(email_data)
 
-            # --- Technology Detection ---
             st.subheader("Technology Detection")
             tech_data = technology_detection(domain)
             if "error" in tech_data:
@@ -261,7 +241,6 @@ if domain:
             else:
                 st.json(tech_data)
 
-            # --- OS Detection ---
             st.subheader("Operating System Detection")
             os_info = os_detection(domain)
             if "error" in os_info:
@@ -269,7 +248,6 @@ if domain:
             else:
                 st.write(os_info)
 
-            # --- Domain Information Gathering ---
             st.subheader("Domain Information Gathering")
             domain_extra_info = gather_domain_info(domain)
             if "error" in domain_extra_info:
@@ -277,7 +255,6 @@ if domain:
             else:
                 st.json(domain_extra_info)
 
-            # --- VirusTotal Lookup ---
             st.subheader("VirusTotal Lookup")
             virustotal_data = virustotal_lookup(domain)
             if "error" in virustotal_data:
@@ -286,7 +263,6 @@ if domain:
                 st.json(virustotal_data)
 
     with tab3:
-       # --- Export Options ---
         st.subheader("Export Data")
         if st.button("Generate Report"):
             report_data = {
@@ -375,14 +351,12 @@ if domain:
                       )
 
 
-    # --- Configuration ---
     if st.checkbox("Show Configuration Options"):
         st.subheader("Configuration")
         st.write(
             "Here you could customize things like scheduling tasks, saving API keys securely, notification settings, etc. This is a work in progress! :D")
 
 
-# --- Automated Task (Example) ---
 def automated_task():
     print("Running scheduled task...")
 
