@@ -8,7 +8,6 @@ import streamlit as st
 
 
 def whois_lookup(domain):
-    """Retrieves WHOIS information for a given domain."""
     if not domain:
         return {"error": "Domain cannot be empty."}
     with st.spinner(f"Retrieving WHOIS data for {domain}"):
@@ -24,7 +23,6 @@ def whois_lookup(domain):
 
 
 def dns_lookup(domain):
-    """Resolves DNS records (A records) for a given domain."""
     if not domain:
       return {"error": "Domain cannot be empty."}
     with st.spinner(f"Resolving DNS for {domain}"):
@@ -40,7 +38,6 @@ def dns_lookup(domain):
             return {"error": f"Error resolving DNS for {domain}: {e}"}
 
 def ssl_certificate_info(domain):
-    """Retrieves SSL certificate information for a given domain."""
     if not domain:
       return {"error": "Domain cannot be empty."}
     with st.spinner(f"Retrieving SSL certificate information for {domain}"):
