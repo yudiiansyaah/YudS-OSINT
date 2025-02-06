@@ -4,22 +4,18 @@ import requests
 import streamlit as st
 
 def phone_number_lookup(query):
-    """Attempts to find phone numbers in a given query or on a website.
-    Regex pattern for a common formats, adapt as needed
-    """
-
     if not query:
         return {"message": "No query provided for phone number lookup"}
     phone_number_regex = re.compile(r'(\+?\d{1,3}[-.\s]?)?(\(?\d{1,4}\)?[-.\s]?)?(\d{1,4}[-.\s]?\d{1,9})')
     numbers = []
-    if query.startswith('http'): # check if the query is a URL
+    if query.startswith('http'): 
        try:
            response = requests.get(query,timeout=5)
            response.raise_for_status()
            soup = BeautifulSoup(response.content, 'html.parser')
-           text = soup.get_text() # extract all text
+           text = soup.get_text() 
            for match in phone_number_regex.finditer(text):
-               numbers.append(match.group().strip()) # append non-empty matches
+               numbers.append(match.group().strip()) 
        except requests.exceptions.RequestException as e:
           return {"error": f"Error accessing webpage {query}: {e}"}
 
@@ -28,13 +24,12 @@ def phone_number_lookup(query):
         numbers.append(match.group().strip())
 
     if numbers:
-        return list(set(numbers)) # return unique phone numbers
+        return list(set(numbers)) 
     return {"message": "No phone numbers detected"}
 
 
 
 def email_lookup(query):
-     """Attempts to find email addresses in given query or webpage"""
      if not query:
          return {"message": "No query provided for email lookup"}
      email_regex = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
@@ -60,7 +55,6 @@ def email_lookup(query):
 
 
 def technology_detection(url):
-    """Detects technologies based on HTTP headers and HTML patterns."""
     if not url:
        return {"error": "URL cannot be empty."}
     with st.spinner(f"Detecting Technologies for {url}"):
@@ -69,12 +63,10 @@ def technology_detection(url):
             response.raise_for_status()
             tech = {"headers" : {}, "html_patterns" : []}
 
-            # header analysis
             if 'Server' in response.headers:
                 tech["headers"]["Server"] = response.headers['Server']
             else:
                 tech["headers"]["Server"] = "Not Found"
-            # html patterns
             soup = BeautifulSoup(response.content, 'html.parser')
             if soup.find(attrs={"id": "wpadminbar"}) :
                 tech["html_patterns"].append("Wordpress")
@@ -88,7 +80,6 @@ def technology_detection(url):
 
 
 def os_detection(url):
-  """Attempt OS detection from user agent header"""
   if not url:
        return {"error": "URL cannot be empty."}
   with st.spinner(f"Detecting OS for {url}"):
@@ -109,7 +100,6 @@ def os_detection(url):
 
 
 def gather_domain_info(url):
-    """Gathers additional info from the target URL like robots.txt or social media"""
     if not url:
        return {"error": "URL cannot be empty."}
     with st.spinner(f"Gathering domain info for {url}"):
@@ -119,7 +109,6 @@ def gather_domain_info(url):
            response.raise_for_status()
            soup = BeautifulSoup(response.content, 'html.parser')
 
-           # find social media links
            social_media_links = []
            social_patterns = re.compile(r"(facebook|twitter|instagram|linkedin|youtube)\.com")
            for link in soup.find_all('a', href=True):
@@ -127,7 +116,6 @@ def gather_domain_info(url):
                     social_media_links.append(link['href'])
            domain_info['social_media'] = list(set(social_media_links))
 
-           # check robots.txt
            try:
                robots_url = url.rstrip('/') + "/robots.txt"
                robots_response = requests.get(robots_url,timeout=5)
